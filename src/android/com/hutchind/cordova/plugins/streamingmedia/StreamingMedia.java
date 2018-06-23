@@ -22,14 +22,31 @@ public class StreamingMedia extends CordovaPlugin {
 
 	private static final int ACTIVITY_CODE_PLAY_MEDIA = 7;
 
-	private CallbackContext callbackContext;
+	public static CallbackContext callbackContext;
 
 	private static final String TAG = "StreamingMediaPlugin";
+
+	public static PluginResult onPause;
+	public static PluginResult onStop;
+	public static PluginResult onPlay;
+
+	public static JSONObject options;
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		this.callbackContext = callbackContext;
-		JSONObject options = null;
+		this.options = null;
+
+
+		this.onPause = new PluginResult(PluginResult.Status.OK, "paused");
+		this.onPause.setKeepCallback(true);
+
+		this.onStop = new PluginResult(PluginResult.Status.OK, "stopped");
+		this.onStop.setKeepCallback(true);
+
+		this.onPlay = new PluginResult(PluginResult.Status.OK, "played");
+		this.onPlay.setKeepCallback(true);
+		callbackContext.sendPluginResult(onPause);
 
 		try {
 			options = args.getJSONObject(1);
