@@ -42,6 +42,9 @@
 				<string>fetch</string>
 			</array>
 		</config-file>
+		<pods-config use-frameworks="true">
+        </pods-config>
+        <pod name="MobileVLCKit" />
 		<header-file src="src/ios/StreamingMedia.h" />
 		<source-file src="src/ios/StreamingMedia.m" />
 		<header-file src="src/ios/LandscapeVideo.h" />
